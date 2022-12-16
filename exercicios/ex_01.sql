@@ -21,8 +21,12 @@ OR descUF = 'SP'
 
 -- COMMAND ----------
 
--- 04) Selecione produtos de perefurmaria e bebes com altura maior que 5cm
+-- 04) Selecione produtos das categorias perefurmaria e bebes com altura maior que 5cm
 SELECT *
 FROM silver_olist.produto 
 WHERE descCategoria IN ('perfumaria', 'bebes')
 AND vlAlturaCm > 5
+
+-- COMMAND ----------
+
+
