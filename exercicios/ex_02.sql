@@ -1,15 +1,46 @@
 -- Databricks notebook source
 -- EXERCÍCIOS WHERE
 -- 01) Lista de pedidos com mais de um item
+SELECT *
+FROM silver_olist.item_pedido
+WHERE idPedidoItem > 1
+
+-- COMMAND ----------
+
 -- 02) Lista de pedidos que o frete é mais caro que o item
+SELECT *
+FROM silver_olist.item_pedido
+WHERE vlFrete > vlPreco
+
+-- COMMAND ----------
+
 -- 03) Lista de pedidos que ainda não foram enviados
+SELECT *
+FROM silver_olist.pedido
+WHERE descSituacao != 'shipped'
+
+-- COMMAND ----------
+
 -- 04) Lista de pedidos que foram entregues com atraso
+SELECT *,
+       datediff(dtEntregue, dtEstimativaEntrega) AS diasAtraso
+FROM silver_olist.pedido
+WHERE dtEntregue > dtEstimativaEntrega
+
+-- COMMAND ----------
+
 -- 05) Lista de pedidos que foram entregues com 2 dias de antecedência
+SELECT *,
+       datediff(dtEstimativaEntrega, dtEntregue) AS Adiantado
+FROM silver_olist.pedido
+WHERE datediff(dtEstimativaEntrega, dtEntregue) = 2
+
+-- COMMAND ----------
+
 -- 06) Lista de pedidos feitos em dezembro de 2017 e entregues com atraso
 SELECT *,
        date(dtEntregue),
-       date(dtEstimativaEntrega) 
-       
+       date(dtEstimativaEntrega)       
 FROM silver_olist.pedido
 WHERE YEAR(dtPedido) = 2017
 AND MONTH(dtPedido) = 12
